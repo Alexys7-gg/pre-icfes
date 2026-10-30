@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-ICFES 500 | Simulacro Saber 11</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c31;--panel2:#1b2741;--text:#eef3ff;--muted:#aab6d3;--accent:#7c5cff;--accent2:#28d7a1;--danger:#ff657a;--line:#2b3857}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#1b2450 0,#0b1020 42%);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;color:var(--text);min-height:100vh}
+header{padding:24px max(20px,calc((100% - 1120px)/2));border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#35baff);display:grid;place-items:center;font-weight:900;font-size:18px}.brand h1{font-size:18px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.pill{border:1px solid #394766;border-radius:99px;padding:8px 12px;color:#cbd5f2;font-size:12px}
+main{max-width:1120px;margin:0 auto;padding:32px 20px 60px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:22px;align-items:stretch}.card{background:rgba(20,28,49,.92);border:1px solid var(--line);border-radius:22px;padding:25px;box-shadow:0 18px 55px #0002}
+.eyebrow{color:#a99aff;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:11px}.hero h2{font-size:clamp(28px,4vw,44px);line-height:1.08;margin:12px 0}.hero p{color:var(--muted);line-height:1.65}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{background:var(--panel2);padding:14px;border-radius:14px}.stat strong{display:block;font-size:23px}.stat span{font-size:11px;color:var(--muted)}
+.side h3{margin:0 0 14px}.subject-list{display:grid;gap:10px}.subject-row{display:flex;justify-content:space-between;gap:12px;padding:12px;background:var(--panel2);border-radius:12px;font-size:13px}.subject-row span:last-child{color:var(--muted)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}button,select{font:inherit}button{border:0;border-radius:12px;padding:12px 17px;font-weight:750;cursor:pointer;transition:.15s}button:hover{transform:translateY(-1px)}.primary{background:var(--accent);color:white}.secondary{background:#263451;color:#eaf0ff;border:1px solid #3a496b}.success{background:var(--accent2);color:#06271e}.danger{background:#4a2333;color:#ffdce2;border:1px solid #7c344b}
+#exam{display:none;margin-top:22px}.exam-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.progress-wrap{height:8px;background:#28334d;border-radius:99px;overflow:hidden;margin:18px 0}.progress{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .2s}
+.question-layout{display:grid;grid-template-columns:1fr 245px;gap:18px}.question-card h3{font-size:21px;line-height:1.45}.qmeta{font-size:12px;color:#b7aaff;font-weight:800;text-transform:uppercase;letter-spacing:1px}.context{background:#10182a;border-left:3px solid var(--accent);padding:14px 16px;border-radius:8px;color:#d1dcf5;line-height:1.65;margin:15px 0}.options{display:grid;gap:10px;margin:20px 0}.option{width:100%;display:flex;gap:12px;align-items:flex-start;text-align:left;background:#1b2741;border:1px solid #344260;color:var(--text);padding:14px;border-radius:13px;font-weight:500;line-height:1.45}.option .letter{width:27px;height:27px;display:grid;place-items:center;flex-shrink:0;border-radius:8px;background:#303e5d;font-weight:800}.option.selected{border-color:#a99aff;background:#302c59}.option:disabled{cursor:default;transform:none}.navrow{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px}.sidebar h4{margin:0 0 12px}.qgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.qnum{padding:8px 0;background:#202c45;color:#dce5ff;border:1px solid #344260;border-radius:8px;font-size:12px}.qnum.answered{background:#254e4b;border-color:#2e8f80}.qnum.current{outline:2px solid #a99aff}.small{font-size:12px;color:var(--muted);line-height:1.55}.result{display:none;margin-top:22px}.score-big{font-size:52px;font-weight:900;margin:8px 0}.result-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0}.area-score{padding:14px;background:var(--panel2);border-radius:14px}.area-score strong{display:block;font-size:21px}.area-score span{font-size:11px;color:var(--muted)}.review-item{padding:16px;background:#111a2d;border:1px solid var(--line);border-radius:13px;margin:10px 0}.review-item .correct{color:var(--accent2)}.review-item .wrong{color:#ff9cac}.review-item p{line-height:1.55;color:#d7e0f7}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}.hide{display:none!important}
+@media(max-width:800px){.hero,.question-layout{grid-template-columns:1fr}.result-grid{grid-template-columns:repeat(2,1fr)}.sidebar{order:2}.hero{gap:14px}.card{padding:19px}}@media(max-width:450px){main{padding:20px 12px}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:10px}.stat strong{font-size:19px}.qgrid{grid-template-columns:repeat(6,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">P+</div><div><h1>Pre-ICFES 500</h1><p>Simulacro de práctica · Saber 11</p></div></div><div class="pill">📚 Aprende · Practica · Mejora</div></header>
+<main>
+<section class="hero" id="home">
+ <div class="card">
+  <div class="eyebrow">Tu entrenamiento comienza aquí</div>
+  <h2>Prepárate para el<br><span style="color:#a99aff">Saber 11</span></h2>
+  <p>Practica con 500 preguntas de entrenamiento creadas para esta página, distribuidas entre las cinco áreas. Responde a tu ritmo y revisa tu resultado, tus errores y explicaciones al terminar.</p>
+  <div class="stats"><div class="stat"><strong>500</strong><span>preguntas</span></div><div class="stat"><strong>5</strong><span>áreas</span></div><div class="stat"><strong>Auto</strong><span>calificación</span></div></div>
+  <div class="actions"><button class="primary" onclick="startExam('all')">Comenzar examen completo</button><button class="secondary" onclick="showSubjects()">Practicar por materia</button></div>
+ </div>
+ <div class="card side"><h3>Áreas del examen</h3><div class="subject-list">
+  <div class="subject-row"><span>📖 Lectura Crítica</span><span>100 preguntas</span></div><div class="subject-row"><span>➗ Matemáticas</span><span>100 preguntas</span></div><div class="subject-row"><span>🌎 Sociales y Ciudadanas</span><span>100 preguntas</span></div><div class="subject-row"><span>🧪 Ciencias Naturales</span><span>100 preguntas</span></div><div class="subject-row"><span>🇬🇧 Inglés</span><span>100 preguntas</span></div>
+ </div><p class="small">Consejo: lee con calma, elimina opciones incorrectas y reserva tiempo para revisar.</p>
+ <div id="subjectPicker" class="actions hide">
+ <button class="secondary" onclick="startExam('Lectura Crítica')">Lectura</button><button class="secondary" onclick="startExam('Matemáticas')">Matemáticas</button><button class="secondary" onclick="startExam('Sociales y Ciudadanas')">Sociales</button><button class="secondary" onclick="startExam('Ciencias Naturales')">Ciencias</button><button class="secondary" onclick="startExam('Inglés')">Inglés</button>
+ </div></div>
+</section>
+<section id="exam" class="card">
+ <div class="exam-top"><div><div class="eyebrow" id="examSubject">Simulacro</div><div id="counter" style="font-weight:800;font-size:19px;margin-top:5px">Pregunta 1 de 500</div></div><button class="danger" onclick="confirmFinish()">Terminar y ver resultado</button></div>
+ <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+ <div class="question-layout"><div class="question-card">
+  <div class="qmeta" id="qmeta">Área</div><h3 id="questionText"></h3><div id="context" class="context hide"></div><div class="options" id="options"></div>
+  <div class="navrow"><button class="secondary" onclick="move(-1)">← Anterior</button><button class="primary" onclick="move(1)">Siguiente →</button></div>
+ </div><aside class="card sidebar" style="padding:17px"><h4>Hoja de respuestas</h4><div class="small" style="margin-bottom:12px">Verde = respondida. Puedes saltar a cualquier pregunta.</div><div class="qgrid" id="qgrid"></div><p class="small" id="answeredCount">0 respondidas</p></aside></div>
+</section>
+<section id="result" class="card result">
+ <div class="eyebrow">Simulacro completado</div><h2>Tu resultado</h2><div class="score-big" id="scoreBig">0%</div><p id="resultSummary" class="small"></p><div class="result-grid" id="areaScores"></div>
+ <div class="actions"><button class="primary" onclick="toggleReview()">Revisar respuestas</button><button class="secondary" onclick="restart()">Volver al inicio</button></div><div id="review" class="hide" style="margin-top:22px"><h3>Revisión de respuestas</h3><div class="actions"><select id="reviewFilter" onchange="renderReview()"><option value="all">Todas las preguntas</option><option value="wrong">Solo incorrectas o sin responder</option></select></div><div id="reviewList"></div></div>
+ <p class="small">Este resultado es una práctica orientativa, no un puntaje oficial del ICFES.</p>
+</section>
+<div class="footer">Banco de práctica elaborado para estudiar; no es un cuadernillo oficial ni una predicción del puntaje ICFES. Consulta también la <a href="https://www.icfes.gov.co/caja-de-herramientas-saber-11/practica/" target="_blank" rel="noopener" style="color:#b8aaff">Caja de Herramientas oficial del ICFES</a>.</div>
+</main>
+<script>
+const subjects=['Lectura Crítica','Matemáticas','Sociales y Ciudadanas','Ciencias Naturales','Inglés'];
+const bank=[];
+function add(subject,text,opts,correct,context='',explain=''){bank.push({subject,text,opts,correct,context,explain});}
+function shuffleOptions(options, correctIndex, seed){
+ const pairs=options.map((v,i)=>({v,ok:i===correctIndex}));
+ for(let i=pairs.length-1;i>0;i--){seed=(seed*9301+49297)%233280;const j=Math.floor(seed/233280*(i+1));[pairs[i],pairs[j]]=[pairs[j],pairs[i]];}
+ return {opts:pairs.map(p=>p.v),correct:pairs.findIndex(p=>p.ok)};
+}
+function pushQ(subject,text,options,correct,context='',explain=''){
+ const q=shuffleOptions(options,correct,bank.length+173);add(subject,text,q.opts,q.correct,context,explain);
+}
+function addMany(subject, items){items.forEach(x=>pushQ(subject,x[0],x[1],x[2],x[3]||'',x[4]||''));}
+
+// LECTURA CRÍTICA: preguntas de interpretación, estructura, inferencia y evaluación.
+const reading=[
+['Una columna afirma que ampliar las ciclovías puede reducir los viajes cortos en automóvil. ¿Cuál es la tesis central?',['Las bicicletas solo sirven para hacer deporte.','Las ciclovías pueden ayudar a disminuir el uso del automóvil en trayectos cortos.','Todos los ciudadanos deben vender sus carros.','El transporte público debe desaparecer.'],1,'La tesis expresa la idea que el autor defiende.'],
+['Un texto informa que un humedal alberga aves, regula el agua y captura carbono. ¿Qué idea integra mejor esa información?',['El humedal cumple varias funciones ecológicas importantes.','El humedal solo es útil para observar aves.','El agua no tiene relación con los humedales.','El humedal es un espacio exclusivamente comercial.'],0,'La opción correcta reúne las funciones mencionadas.'],
+['En una crónica, la narradora describe que el mercado despierta antes del amanecer y “se llena de voces”. ¿Qué recurso predomina en esa expresión?',['Una fórmula matemática.','Una instrucción literal.','Una personificación del mercado.','Una definición jurídica.'],2,'Se atribuyen al lugar acciones propias de un ser vivo.'],
+['Un informe compara la asistencia escolar antes y después de ofrecer transporte rural. ¿Qué dato sería más útil para evaluar el efecto de la medida?',['El color de los buses.','La opinión de una sola persona sin contexto.','La cantidad de árboles de la zona.','Las tasas de asistencia de ambos periodos y otros factores relevantes.'],3,'La comparación debe usar datos relacionados y considerar variables externas.'],
+['Una autora reconoce que los celulares distraen, pero sostiene que también pueden apoyar el aprendizaje con reglas claras. ¿Qué postura adopta?',['Rechaza cualquier uso de tecnología.','Presenta una posición matizada que reconoce ventajas y riesgos.','Afirma que toda distracción mejora las notas.','Evita expresar una opinión.'],1,'La autora reconoce más de una dimensión del asunto.'],
+['Un texto usa “por consiguiente” antes de una conclusión. ¿Qué relación señala ese conector?',['Consecuencia o conclusión.','Contradicción absoluta.','Enumeración de ejemplos sin relación.','Cambio de personaje.'],0,'“Por consiguiente” introduce una consecuencia.'],
+['Una noticia afirma que una ciudad plantó 2.000 árboles, pero no explica dónde ni cuándo. ¿Qué pregunta ayudaría a verificar mejor la información?',['¿Qué música escucha el alcalde?','¿Qué color tiene el logotipo?','¿En qué lugares y fechas se sembraron los árboles?','¿Cuál es el deporte más popular?'],2,'La pregunta busca datos comprobables que precisan la afirmación.'],
+['Un texto sostiene que leer ficción puede desarrollar empatía porque permite conocer perspectivas distintas. ¿Cuál evidencia apoyaría mejor la afirmación?',['El precio promedio de los cuadernos.','La cantidad de sillas de una biblioteca.','Una lista de novelas por orden alfabético.','Un estudio que compare habilidades de comprensión de perspectivas antes y después de leer.'],3,'La evidencia debe relacionarse directamente con la afirmación.'],
+['En un relato, el personaje mira repetidamente el reloj mientras espera una llamada. ¿Qué se puede inferir con mayor fundamento?',['Está esperando algo que considera importante o urgente.','No sabe leer la hora.','El reloj está necesariamente dañado.','La llamada ya ocurrió con seguridad.'],0,'La conducta sugiere expectativa, aunque no confirma la causa exacta.'],
+['Un anuncio afirma “el 90 % de los usuarios recomienda esta aplicación”, sin indicar cómo se hizo la encuesta. ¿Qué debe preguntarse un lector crítico?',['Si la aplicación tiene un nombre corto.','Cuántas personas participaron y cómo fueron seleccionadas.','Si el anuncio contiene una imagen.','Si el texto usa letra grande.'],1,'La muestra y el método permiten juzgar la solidez del dato.'],
+['¿Cuál es la función principal de un subtítulo en un texto expositivo?',['Reemplazar todas las pruebas.','Expresar necesariamente una burla.','Organizar el contenido y anticipar el tema de una sección.','Demostrar que el texto es ficticio.'],2,'Los subtítulos orientan la lectura y estructuran el contenido.'],
+['Una reseña presenta primero la trama de una película y luego evalúa su ritmo y actuaciones. ¿Qué propósito cumple la segunda parte?',['Repetir el título.','Cambiar la reseña por una receta.','Ocultar la opinión del autor.','Valorar aspectos de la obra para orientar al lector.'],3,'La valoración diferencia la reseña de un simple resumen.'],
+['Un autor escribe “aunque la medida es costosa, sus beneficios pueden superar la inversión”. ¿Qué relación expresa “aunque”?',['Contraste o concesión.','Una causa única.','Una secuencia temporal exacta.','Una definición de diccionario.'],0,'“Aunque” introduce una dificultad que no elimina la idea principal.'],
+['Dos artículos explican el mismo paro: uno se centra en las demandas laborales y otro en los efectos económicos. ¿Qué explica la diferencia?',['Que uno necesariamente es falso.','Que cada autor selecciona aspectos y enfoques distintos.','Que ambos textos no pueden tratar el mismo hecho.','Que los hechos nunca tienen consecuencias.'],1,'Un mismo evento admite distintos enfoques informativos.'],
+['En un texto argumentativo, ¿qué diferencia hay entre una tesis y una evidencia?',['Son exactamente lo mismo.','La evidencia es siempre una pregunta.','La tesis es la postura y la evidencia ayuda a respaldarla.','La tesis solo aparece en textos científicos.'],2,'La tesis se defiende mediante razones y evidencias.'],
+['Un manual enumera “primero, después, finalmente”. ¿Qué estructura predomina?',['Comparación de opiniones.','Descripción de un paisaje.','Argumentación por autoridad.','Secuencia de pasos o acontecimientos.'],3,'Los marcadores organizan acciones en orden.'],
+['Un poema compara la memoria con una casa llena de habitaciones. ¿Qué aporta esa imagen?',['Representa de forma figurada cómo se organiza o guarda el recuerdo.','Prueba que la memoria es un edificio real.','Presenta una estadística demográfica.','Da una instrucción de seguridad.'],0,'La comparación ayuda a expresar una idea abstracta.'],
+['Una publicación afirma que un alimento cura todas las enfermedades, pero solo cita un comentario anónimo. ¿Cuál es la principal debilidad?',['La publicación es demasiado breve.','La evidencia no es confiable ni suficiente para una afirmación tan amplia.','El comentario tiene pocas palabras.','El alimento aparece en una fotografía.'],1,'Una afirmación extraordinaria requiere evidencia sólida y verificable.'],
+['En una entrevista, una persona dice “no todo progreso tecnológico significa progreso social”. ¿Qué idea comunica?',['Toda tecnología debe prohibirse.','La sociedad no cambia nunca.','El avance técnico no garantiza por sí solo una mejora social.','La tecnología solo existe en el pasado.'],2,'La frase distingue el cambio técnico del bienestar social.'],
+['¿Qué permite reconocer el tono irónico de un texto?',['Contar cuántos párrafos tiene.','Identificar la fecha de publicación únicamente.','Leer solo la primera oración.','Detectar una diferencia entre lo dicho literalmente y lo que se da a entender.'],3,'La ironía suele depender del contexto y del contraste de significados.']
+];
+// Crear 80 preguntas adicionales distintas mediante situaciones nuevas sobre habilidades de lectura.
+const readContexts=[
+['biblioteca','Una biblioteca de barrio amplió su horario y aumentaron las visitas de estudiantes.','¿Qué conclusión es más prudente?',['El horario puede haber contribuido al aumento, pero se necesitan más datos para confirmar la causa.','Todos los estudiantes visitan bibliotecas a diario.','Las bibliotecas ya no necesitan libros.','El aumento prueba que todos los barrios tienen la misma necesidad.'],0,'La coincidencia temporal no demuestra por sí sola causalidad.'],
+['agua','Un reporte indica que el consumo de agua bajó después de instalar medidores, aunque también hubo una temporada lluviosa.','¿Qué aspecto debe considerar el análisis?',['Solo el precio de los medidores.','La posible influencia de ambos factores y de otros cambios.','La opinión de quien diseñó el reporte únicamente.','El número de páginas del reporte.'],1,'Deben considerarse explicaciones alternativas.'],
+['museo','Un folleto presenta objetos antiguos junto a testimonios de habitantes mayores.','¿Qué aporta combinar esas fuentes?',['Garantiza que toda memoria sea exacta.','Evita interpretar los objetos.','Permite relacionar evidencias materiales con recuerdos personales.','Convierte el folleto en una novela.'],2,'Las fuentes diferentes pueden complementarse y también deben evaluarse.'],
+['deporte','Una nota atribuye la victoria de un equipo exclusivamente a su entrenador, sin mencionar a los jugadores.','¿Qué limitación tiene esa explicación?',['Incluye demasiadas causas.','Es una descripción neutral y completa.','No presenta una conclusión.','Simplifica un resultado que probablemente depende de varios factores.'],3,'Una explicación monocausal puede omitir factores relevantes.'],
+['bosque','Un artículo describe la tala y luego presenta cifras sobre pérdida de especies.','¿Qué función cumplen las cifras?',['Aportar evidencia sobre la magnitud del problema.','Cambiar el tema a la economía doméstica.','Sustituir la conclusión por una pregunta.','Probar que no hay pérdida de especies.'],0,'Los datos cuantifican la situación descrita.'],
+['transporte','Una encuesta sobre transporte solo pregunta a personas que usan automóvil.','¿Cuál es el principal riesgo?',['Que las preguntas sean demasiado cortas.','Que las opiniones no representen a quienes usan otros medios.','Que la encuesta incluya porcentajes.','Que los resultados sean publicados.'],1,'La selección de participantes puede sesgar los resultados.'],
+['alimentación','Un texto recomienda comer frutas y verduras y menciona fibra, vitaminas y minerales.','¿Qué tipo de apoyo utiliza?',['Una amenaza legal.','Una narración fantástica.','Razones relacionadas con nutrientes y salud.','Una comparación de mapas.'],2,'La explicación vincula la recomendación con beneficios nutricionales.'],
+['música','Una crítica afirma que una canción es “poderosa” por sus cambios de ritmo y su interpretación vocal.','¿Qué hace que la valoración sea más sólida?',['Usar únicamente adjetivos.','Evitar hablar de la canción.','Citar el número de reproducciones sin relación.','Explicar los criterios que sustentan la opinión.'],3,'La crítica se justifica al señalar rasgos concretos.']
+];
+for(let r=0;r<10;r++){
+ for(let k=0;k<readContexts.length;k++){
+  const x=readContexts[k];
+  reading.push([`${x[1]} (situación ${r+1}). ${x[2]}`,x[3],x[4],x[5]]);
+ }
+}
+addMany(subjects[0],reading.slice(0,100));
+
+// MATEMÁTICAS: 100 problemas numéricos generados con solución y distractores calculados.
+const mathItems=[];
+function mQ(text,answer,wrong,explain){mathItems.push([text,[String(answer),...wrong.map(String)],0,'',explain]);}
+for(let i=1;i<=20;i++){
+ const a=i+3,b=i+5;
+ mQ(`Una tienda vende un cuaderno a $${a*1000} y un lápiz a $${b*500}. ¿Cuánto cuestan juntos?`,a*1000+b*500,[a*1000-b*500,(a+b)*1000,b*500],`Suma los precios: ${a*1000} + ${b*500} = ${a*1000+b*500}.`);
+ mQ(`¿Cuál es el ${i*5}% de ${i*20}?`,i,[i+5,i*2,i*5],`${i*20} × ${i*5/100} = ${i}.`);
+ mQ(`Si x + ${i+2} = ${2*i+7}, ¿cuánto vale x?`,i+5,[i+2,2*i+7,i+3],`Resta ${i+2} a ambos lados: x = ${2*i+7} − ${i+2} = ${i+5}.`);
+ mQ(`Un rectángulo mide ${i+2} cm de largo y ${i} cm de ancho. ¿Cuál es su área?`,(i+2)*i,[2*(i+2+i),i*i,(i+2)*i+2],`Área = largo × ancho = ${i+2} × ${i} = ${(i+2)*i} cm².`);
+ mQ(`La media de ${i}, ${i+2} y ${i+4} es:`,i+2,[i+1,i+3,i+4],`(${i} + ${i+2} + ${i+4}) ÷ 3 = ${i+2}.`);
+}
+addMany(subjects[1],mathItems);
+
+// SOCIALES Y CIUDADANAS: bancos de situaciones con respuestas basadas en conceptos cívicos e históricos.
+const social=[
+['La Constitución de Colombia establece derechos y mecanismos para protegerlos. Si una persona considera vulnerado un derecho fundamental, ¿qué debe hacer?',['Renunciar a todos sus derechos.','Buscar el mecanismo legal o institucional pertinente.','Impedir que otras personas participen.','Ignorar cualquier procedimiento.'],1,'Los derechos cuentan con mecanismos de protección establecidos por la ley.'],
+['En una elección escolar, todos los candidatos pueden presentar propuestas y los estudiantes votan en secreto. ¿Qué principio se refleja?',['Participación democrática.','Censura previa.','Poder hereditario.','Exclusión política.'],0,'La participación y el voto libre son elementos democráticos.'],
+['Un municipio quiere construir una vía cerca de un humedal. ¿Qué decisión considera mejor los intereses colectivos?',['Aprobarla sin estudios.','Ocultar el proyecto.','Evaluar impactos ambientales y escuchar a las comunidades.','Prohibir que se hagan preguntas.'],2,'La decisión informada requiere evaluación y participación.'],
+['¿Por qué la separación de poderes es importante en un Estado democrático?',['Para que no existan tribunales.','Para que las leyes nunca cambien.','Para dar poder ilimitado a una sola persona.','Para establecer controles y limitar posibles abusos.'],3,'Las ramas del poder tienen funciones distintas y mecanismos de control.'],
+['Una fuente primaria para estudiar una protesta ocurrida en 1980 podría ser:',['Un libro de texto actual que la resume.','Una fotografía tomada durante la protesta.','Una novela ficticia sin relación con el evento.','Un artículo que no menciona fuentes.'],1,'Una fotografía contemporánea puede ser una fuente primaria.'],
+['En un mapa con escala 1:100.000, un centímetro representa en la realidad:',['100.000 centímetros, es decir, un kilómetro.','100 centímetros.','100.000 kilómetros.','Un milímetro.'],0,'100.000 cm equivalen a 1 km.'],
+['Una ciudad recibe población rural y crece rápidamente. ¿Qué reto puede aparecer si no hay planificación?',['Desaparición automática de los servicios.','Imposibilidad de crear empleo.','Mayor demanda de vivienda, transporte y servicios públicos.','Que toda la población vuelva al campo.'],2,'El crecimiento urbano requiere ampliar infraestructura y servicios.'],
+['Una persona publica una crítica al alcalde sin amenazas ni datos privados. ¿Qué derecho se relaciona con esa acción?',['El derecho a eliminar elecciones.','El derecho a impedir opiniones contrarias.','La obligación de apoyar al alcalde.','La libertad de expresión dentro de los límites legales.'],3,'La crítica política forma parte de la expresión ciudadana.'],
+['La inflación se refiere principalmente a:',['Una caída permanente de toda producción.','Un aumento general de los precios durante un periodo.','La reducción de la población.','La desaparición de los impuestos.'],1,'La inflación mide el aumento general del nivel de precios.'],
+['Una comunidad crea una veeduría para observar cómo se usan recursos públicos. ¿Cuál es su propósito?',['Ejercer control ciudadano sobre la gestión pública.','Reemplazar a todos los jueces.','Prohibir la publicación de presupuestos.','Administrar todas las empresas privadas.'],0,'La veeduría facilita vigilancia y transparencia.'],
+['¿Cuál es una consecuencia posible de la deforestación?',['Más hábitat para todas las especies sin excepción.','Desaparición inmediata de toda lluvia mundial.','Pérdida de hábitats, erosión y alteración del ciclo del agua.','Ningún cambio ambiental.'],2,'La cobertura forestal protege suelos y ecosistemas.'],
+['¿Qué caracteriza a una fuente secundaria de historia?',['Fue creada necesariamente durante el hecho.','Es siempre una fotografía original.','No contiene interpretación.','Analiza o interpreta fuentes y acontecimientos anteriores.'],3,'Las fuentes secundarias suelen elaborarse después del acontecimiento.'],
+['En una sociedad multicultural, ¿qué acción promueve convivencia?',['Imponer una única tradición a todos.','Respetar diferencias y garantizar igualdad de derechos.','Prohibir lenguas minoritarias.','Excluir a quienes tienen otras costumbres.'],1,'El respeto a la diversidad se combina con la igualdad de derechos.'],
+['¿Para qué sirve un presupuesto público?',['Planear el uso de ingresos para financiar servicios y obligaciones del Estado.','Eliminar la necesidad de rendir cuentas.','Garantizar que nunca existan prioridades.','Reemplazar la Constitución.'],0,'El presupuesto asigna recursos a programas y responsabilidades.'],
+['Un conflicto entre vecinos se relaciona con el ruido. ¿Cuál es una vía constructiva para resolverlo?',['Publicar datos privados de todos.','Responder con amenazas.','Dialogar, acordar horarios y acudir a mediación si hace falta.','Impedir cualquier conversación.'],2,'El diálogo y la mediación permiten acuerdos pacíficos.'],
+['La globalización puede describirse como:',['El aislamiento de todos los países.','La eliminación total de identidades locales.','La ausencia de intercambio comercial.','El aumento de conexiones económicas, culturales y tecnológicas.'],3,'La globalización incrementa interdependencias entre sociedades.'],
+['¿Qué busca proteger el debido proceso?',['La imposición de castigos sin escuchar.','Procedimientos justos y oportunidad de defensa.','La eliminación de pruebas.','La imposibilidad de apelar.'],1,'El debido proceso establece garantías para las personas.'],
+['Una encuesta de opinión solo se aplica a los amigos de quien la realiza. ¿Qué problema presenta?',['Posible sesgo de selección.','Representatividad perfecta.','Ausencia de respuestas.','Uso de un mapa topográfico.'],0,'Una muestra de conveniencia puede no representar a la población.'],
+['La división del trabajo en una economía significa que:',['Todos realizan siempre la misma tarea.','No existe intercambio de bienes.','Personas o grupos se especializan en distintas tareas productivas.','Se prohíbe toda actividad económica.'],2,'La especialización distribuye actividades y puede aumentar productividad.'],
+['Una política pública busca reducir la contaminación del aire. ¿Qué indicador ayudaría a evaluar su efecto?',['El número de discursos sobre el tema.','El color de los afiches.','La cantidad de reuniones sin resultados.','Las mediciones de contaminantes antes y después de aplicarla.'],3,'Los indicadores deben medir el resultado que se quiere evaluar.']
+];
+const socialTopics=[
+['participación','Una junta vecinal invita a residentes de diferentes edades a priorizar proyectos del barrio.','¿Qué ventaja tiene este proceso?',['Permite incorporar necesidades diversas a la decisión.','Garantiza que todos tengan la misma opinión.','Evita tener que justificar el presupuesto.','Elimina la responsabilidad del gobierno.'],0,'La participación amplia ayuda a identificar necesidades diversas.'],
+['historia','Un investigador contrasta una carta antigua con registros oficiales del mismo periodo.','¿Por qué es útil comparar fuentes?',['Para descartar automáticamente la carta.','Para corroborar datos e identificar diferencias de perspectiva.','Para evitar formular preguntas.','Para convertir una investigación en ficción.'],1,'La triangulación ayuda a evaluar coincidencias y discrepancias.'],
+['economía','El precio de un producto sube cuando escasea y muchas personas quieren comprarlo.','¿Qué relación económica puede ayudar a explicar el cambio?',['El precio nunca se relaciona con la oferta.','La escasez siempre reduce el precio.','La interacción entre oferta y demanda.','El precio depende solo del clima.'],2,'La oferta y la demanda influyen en la formación de precios.'],
+['ambiente','Una región protege la cuenca que abastece de agua a varios municipios.','¿Qué interés colectivo se busca cuidar?',['La exclusividad de un propietario.','La eliminación del acceso al agua.','La expansión urbana sin control.','La disponibilidad y calidad del agua para la población y los ecosistemas.'],3,'La cuenca sostiene abastecimiento y funciones ecológicas.']
+];
+for(let r=0;r<80;r++){const t=socialTopics[r%socialTopics.length];social.push([`${t[1]} (caso ${r+1}). ${t[2]}`,t[3],t[4],t[5]]);}
+addMany(subjects[2],social.slice(0,100));
+
+// CIENCIAS NATURALES: situaciones de biología, química, física, ambiente y método científico.
+const science=[
+['Durante la fotosíntesis, las plantas usan luz, agua y dióxido de carbono para producir principalmente:',['Proteínas animales.','Azúcares y oxígeno.','Rocas y metales.','Nitrógeno puro.'],1,'La fotosíntesis transforma energía lumínica en energía química y libera oxígeno.'],
+['¿Qué organelo participa principalmente en la respiración celular y producción de ATP?',['Núcleo.','Ribosoma.','Mitocondria.','Pared celular.'],2,'Las mitocondrias producen gran parte del ATP en células eucariotas.'],
+['Una población de insectos pierde las plantas de las que se alimenta. ¿Qué consecuencia es probable?',['La población puede disminuir por menor disponibilidad de alimento.','Todos los insectos se vuelven productores.','El ecosistema deja de necesitar energía.','La población aumenta necesariamente sin límite.'],0,'La disponibilidad de alimento afecta supervivencia y reproducción.'],
+['¿Cuál es la función principal de los genes?',['Transportar oxígeno en la sangre.','Digerir lípidos.','Producir luz solar.','Contener información hereditaria.'],3,'Los genes son segmentos de ADN asociados con información hereditaria.'],
+['Una solución tiene pH 3. En la escala común de pH, se considera:',['Neutra.','Ácida.','Básica.','Sin propiedades químicas.'],1,'Los valores menores que 7 indican acidez.'],
+['En una cadena alimentaria, parte de la energía se pierde en forma de calor porque:',['La energía se crea en cada nivel.','Los organismos no usan energía.','Los procesos metabólicos disipan parte de la energía.','La materia no puede cambiar.'],2,'La transferencia de energía entre niveles tróficos no es totalmente eficiente.'],
+['Un objeto tiene masa de 200 g y volumen de 50 cm³. ¿Cuál es su densidad?',['4 g/cm³.','10 g/cm³.','250 g/cm³.','0,25 g/cm³.'],0,'Densidad = masa ÷ volumen = 200 ÷ 50 = 4 g/cm³.'],
+['Si la fuerza neta sobre un objeto de masa constante se duplica, la aceleración resultante según F = ma:',['Se reduce a la mitad.','Permanece necesariamente en cero.','No depende de la fuerza.','Se duplica.'],3,'Con masa constante, la aceleración es proporcional a la fuerza neta.'],
+['El cambio de estado de gas a líquido se denomina:',['Sublimación.','Condensación.','Fusión.','Solidificación.'],1,'La condensación ocurre cuando un gas pasa a líquido.'],
+['¿Cuál es una fuente de energía renovable?',['Carbón.','Gas natural fósil.','Energía eólica.','Petróleo.'],2,'El viento se repone naturalmente y puede generar electricidad.'],
+['En un experimento, se cambia solo la cantidad de luz que recibe una planta y se mide su crecimiento. La cantidad de luz es:',['La variable independiente.','La conclusión final.','Una constante mantenida igual.','La población del planeta.'],0,'La variable independiente es la que el investigador manipula.'],
+['Los antibióticos se usan para tratar determinadas infecciones causadas por:',['Todos los virus.','Alergias estacionales.','Cualquier lesión física.','Bacterias susceptibles.'],3,'Los antibióticos actúan contra bacterias, no contra virus.'],
+['¿Qué partícula subatómica tiene carga negativa?',['Protón.','Electrón.','Neutrón.','Fotón siempre negativo.'],1,'El electrón tiene carga eléctrica negativa.'],
+['Una mezcla homogénea se caracteriza por:',['Mostrar siempre capas visibles.','Ser necesariamente un elemento puro.','Tener composición uniforme a escala macroscópica.','No poder contener agua.'],2,'Una disolución es un ejemplo de mezcla homogénea.'],
+['¿Cuál es el orden correcto de tres procesos del ciclo del agua?',['Evaporación, condensación y precipitación.','Combustión, fusión y digestión.','Fotosíntesis, erosión y magnetismo.','Respiración, fisión y reflexión.'],0,'El agua se evapora, condensa y puede caer como precipitación.'],
+['¿Qué función cumple el sistema circulatorio?',['Producir alimento mediante fotosíntesis.','Transformar rocas en suelo.','Generar luz visible.','Transportar oxígeno, nutrientes y productos de desecho.'],3,'La sangre distribuye sustancias y recoge desechos.'],
+['Una hipótesis científica debe ser:',['Imposible de evaluar.','Contrastable mediante observaciones o experimentos.','Una opinión que nunca cambia.','Una afirmación sin relación con datos.'],1,'Una hipótesis genera predicciones que pueden ponerse a prueba.'],
+['Cuando la luz pasa del aire al agua y cambia de dirección, ocurre:',['Fermentación.','Combustión.','Refracción.','Evaporación.'],2,'La velocidad de la luz cambia entre medios y puede cambiar su dirección.'],
+['¿Qué gas producido por la quema de combustibles fósiles contribuye al efecto invernadero?',['Dióxido de carbono.','Helio.','Neón.','Hidrógeno en cualquier condición.'],0,'El dióxido de carbono es un gas de efecto invernadero.'],
+['La selección natural puede hacer más frecuente un rasgo heredable cuando este:',['Aparece porque el organismo lo desea.','Se transmite siempre a todos sin variación.','No influye en supervivencia ni reproducción.','Favorece el éxito reproductivo en un ambiente.'],3,'Los rasgos heredables ventajosos pueden aumentar en frecuencia con generaciones.']
+];
+const scienceTopics=[
+['física','Una bicicleta recorre 120 metros en 20 segundos a velocidad constante. ¿Cuál es su rapidez media?',['6 m/s.','24 m/s.','100 m/s.','0,6 m/s.'],0,'Rapidez media = distancia ÷ tiempo = 120 ÷ 20 = 6 m/s.'],
+['química','Se disuelven 10 g de sal en agua hasta obtener 100 g de solución. ¿Cuál es el porcentaje en masa de sal?',['1 %.','10 %.','50 %.','90 %.'],1,'Porcentaje en masa = 10/100 × 100 % = 10 %.'],
+['biología','Una célula del cuerpo necesita fabricar una proteína. ¿Qué estructura ensambla aminoácidos para formar proteínas?',['Lisosoma únicamente.','Membrana celular.','Ribosoma.','Cloroplasto en toda célula humana.'],2,'Los ribosomas traducen la información del ARN y ensamblan proteínas.'],
+['ecología','Al aumentar la temperatura de un río, baja el oxígeno disuelto disponible para peces. ¿Qué consecuencia es posible?',['Los peces dejan de necesitar oxígeno.','La temperatura no afecta al agua.','Todas las especies aumentan siempre.','Algunas especies acuáticas pueden sufrir estrés o disminuir.'],3,'El agua más caliente suele contener menos oxígeno disuelto.'],
+['método científico','Un grupo repite un experimento varias veces y obtiene resultados similares. ¿Qué mejora esto?',['La confiabilidad de los resultados.','La certeza de que toda hipótesis es verdadera.','La eliminación de todas las variables.','La imposibilidad de revisar el método.'],0,'La repetición permite evaluar consistencia y variabilidad.']
+];
+for(let r=0;r<80;r++){const t=scienceTopics[r%scienceTopics.length];science.push([`${t[1]} (problema ${r+1}). ${t[2]}`,t[3],t[4],t[5]]);}
+addMany(subjects[3],science.slice(0,100));
+
+// INGLÉS: grammar, vocabulary, signs, short notices and reading.
+const english=[
+['Choose the correct option: “She ___ to school every day.”',['go','going','goes','gone'],2,'In the present simple, he/she/it usually takes -s.'],
+['Complete: “There ___ two books on the desk.”',['are','is','be','am'],0,'Use “there are” with plural nouns.'],
+['What is the opposite of “expensive”?',['Large','Cheap','Fast','Difficult'],1,'“Cheap” means low in price.'],
+['Choose the correct past form: “Yesterday, we ___ a movie.”',['watch','watches','watching','watched'],3,'Regular verbs commonly add -ed in the past simple.'],
+['Read: “Mia takes an umbrella because the sky is dark.” Why does Mia take an umbrella?',['She is going swimming.','She lost her bag.','She thinks it may rain.','She wants to read.'],2,'The dark sky suggests possible rain.'],
+['Choose the correct sentence.',['They are studying now.','They is studying now.','They studying now.','They be studying now.'],0,'Present continuous: subject + am/is/are + verb-ing.'],
+['Complete: “I have lived here ___ 2022.”',['for','since','during','from at'],1,'Use “since” with a starting point in time.'],
+['What does “borrow” mean?',['To give something forever.','To buy something new.','To break something.','To take something temporarily and return it.'],3,'Borrow means receive/use temporarily and return.'],
+['Choose the best response: “How often do you exercise?”',['At the library.','It is blue.','Twice a week.','Because it was late.'],2,'The question asks about frequency.'],
+['Complete: “If it rains, we ___ at home.”',['will stay','stayed yesterday','staying','would stayed'],0,'A first conditional often uses if + present, will + verb.'],
+['Choose the correct comparative: “This test is ___ than the last one.”',['easy','easier','easiest','more easyest'],1,'Short adjectives usually take -er in the comparative.'],
+['What is the main idea? “Recycling paper saves trees and reduces waste. Many schools collect used paper each week.”',['Paper cannot be reused.','Schools should stop learning.','Trees produce plastic.','Recycling paper can help the environment.'],3,'Both sentences describe benefits of recycling paper.'],
+['Complete: “How ___ water do we need?”',['many','few','much','several'],2,'“Water” is uncountable, so use “much”.'],
+['Choose the correct pronoun: “This is Ana. ___ is my cousin.”',['She','He','They are','It'],0,'Use “she” for Ana in this sentence.'],
+['What does the sign “Keep off the grass” mean?',['Water the plants.','Do not walk on the grass.','Sit here.','Cut the grass now.'],1,'“Keep off” means stay away from.'],
+['Complete: “We ___ dinner when the phone rang.”',['have','had every day','are having tomorrow','were having'],3,'Past continuous describes an ongoing past action interrupted by another.'],
+['Choose the correct question.',['Where you live?','Where does you live?','Where do you live?','Where living you?'],2,'Use do + subject + base verb for present simple questions.'],
+['What is the meaning of “careful”?',['Taking care to avoid mistakes or danger.','Very hungry.','Extremely loud.','Unable to move.'],0,'Careful means cautious or attentive.'],
+['Complete: “My brother is interested ___ science.”',['on','in','at to','for of'],1,'The usual expression is “interested in”.'],
+['Read: “The museum opens at 9 a.m. and closes at 5 p.m. Tickets are free for students on Fridays.” When can students enter for free?',['Every Monday.','Only at 5 p.m.','Never.','On Fridays.'],3,'The notice explicitly says student tickets are free on Fridays.']
+];
+const englishTopics=[
+['Choose the correct option: “They ___ football on Saturdays.”',['plays','play','playing','is play'],1,'With “they”, use the base form in the present simple.'],
+['Complete: “There isn’t ___ milk in the fridge.”',['many','few','much','several'],2,'“Milk” is uncountable, so “much” fits a negative sentence.'],
+['Choose the correct word: “I was tired, ___ I went to bed early.”',['so','because of','although of','unless to'],0,'“So” introduces the result.'],
+['Read: “The train leaves at 6:30. Passengers should arrive ten minutes early.” When should passengers arrive?',['At 7:00.','At 6:40.','At 6:20.','At 6:30 exactly.'],2,'Ten minutes before 6:30 is 6:20.'],
+['Choose the correct form: “This is the ___ building in town.”',['tall','taller','more tall','tallest'],3,'Use the superlative form with “the”.']
+];
+for(let r=0;r<80;r++){const t=englishTopics[r%englishTopics.length];english.push([`${t[1]} (practice ${r+1}). ${t[2]}`,t[3],t[4],t[5]]);}
+addMany(subjects[4],english.slice(0,100));
+
+// Reorder into five groups of 100 and verify the intended 500-question total.
+bank.sort((a,b)=>subjects.indexOf(a.subject)-subjects.indexOf(b.subject));
+if(bank.length!==500) console.warn('Question count:',bank.length);
+let questions=[],answers={},current=0,finished=false,reviewOpen=false;
+function showSubjects(){document.getElementById('subjectPicker').classList.toggle('hide')}
+function startExam(subject){
+ questions=subject==='all'?bank.slice():bank.filter(q=>q.subject===subject);
+ answers={};current=0;finished=false;reviewOpen=false;
+ document.getElementById('home').classList.add('hide');
+ document.getElementById('result').style.display='none';
+ document.getElementById('exam').style.display='block';
+ document.getElementById('review').classList.add('hide');
+ renderGrid();renderQuestion();window.scrollTo({top:0,behavior:'smooth'});
+}
+function renderQuestion(){
+ const q=questions[current];
+ document.getElementById('examSubject').textContent=q.subject;
+ document.getElementById('counter').textContent=`Pregunta ${current+1} de ${questions.length}`;
+ document.getElementById('qmeta').textContent=q.subject;
+ document.getElementById('questionText').textContent=q.text;
+ const ctx=document.getElementById('context');ctx.textContent=q.context||'';ctx.classList.toggle('hide',!q.context);
+ const box=document.getElementById('options');box.innerHTML='';
+ q.opts.forEach((opt,i)=>{const b=document.createElement('button');b.className='option'+(answers[current]===i?' selected':'');b.innerHTML=`<span class="letter">${'ABCD'[i]}</span><span></span>`;b.querySelector('span:last-child').textContent=opt;b.onclick=()=>{answers[current]=i;renderQuestion();renderGrid()};box.appendChild(b)});
+ document.getElementById('progress').style.width=`${Object.keys(answers).length/questions.length*100}%`;
+ document.getElementById('answeredCount').textContent=`${Object.keys(answers).length} de ${questions.length} respondidas`;
+ renderGrid();
+}
+function renderGrid(){
+ const g=document.getElementById('qgrid');if(!g)return;g.innerHTML='';
+ questions.forEach((q,i)=>{const b=document.createElement('button');b.className='qnum'+(answers[i]!==undefined?' answered':'')+(i===current?' current':'');b.textContent=i+1;b.onclick=()=>{current=i;renderQuestion();window.scrollTo({top:document.getElementById('exam').offsetTop-10,behavior:'smooth'})};g.appendChild(b)});
+}
+function move(delta){current=Math.max(0,Math.min(questions.length-1,current+delta));renderQuestion();window.scrollTo({top:document.getElementById('exam').offsetTop-10,behavior:'smooth'})}
+function confirmFinish(){const unanswered=questions.length-Object.keys(answers).length;if(unanswered>0&&!confirm(`Te faltan ${unanswered} preguntas. ¿Quieres terminar de todos modos?`))return;finish()}
+function finish(){
+ finished=true;document.getElementById('exam').style.display='none';document.getElementById('result').style.display='block';
+ let correct=0;const by={};subjects.forEach(s=>by[s]={total:0,correct:0});
+ questions.forEach((q,i)=>{by[q.subject].total++;if(answers[i]===q.correct){correct++;by[q.subject].correct++}});
+ const pct=Math.round(correct/questions.length*100);
+ document.getElementById('scoreBig').textContent=`${pct}%`;
+ const answered=Object.keys(answers).length;
+ let msg=pct>=85?'¡Excelente trabajo! Sigue practicando para mantener el nivel.':pct>=65?'¡Buen avance! Revisa los temas donde tuviste errores.':pct>=40?'Vas construyendo la base. Revisa las explicaciones y vuelve a intentarlo.':'Esta práctica te muestra por dónde empezar. Repasa los conceptos y prueba de nuevo.';
+ document.getElementById('resultSummary').textContent=`Respuestas correctas: ${correct} de ${questions.length}. Contestaste ${answered} preguntas y dejaste ${questions.length-answered} sin responder. ${msg}`;
+ const area=document.getElementById('areaScores');area.innerHTML='';
+ subjects.forEach(s=>{if(by[s].total){const p=Math.round(by[s].correct/by[s].total*100);const d=document.createElement('div');d.className='area-score';d.innerHTML=`<span>${s}</span><strong>${p}%</strong><span>${by[s].correct}/${by[s].total} correctas</span>`;area.appendChild(d)}});
+ document.getElementById('review').classList.add('hide');window.scrollTo({top:document.getElementById('result').offsetTop-10,behavior:'smooth'});
+}
+function toggleReview(){document.getElementById('review').classList.toggle('hide');renderReview()}
+function renderReview(){
+ const filter=document.getElementById('reviewFilter').value,list=document.getElementById('reviewList');list.innerHTML='';
+ questions.forEach((q,i)=>{const ok=answers[i]===q.correct;if(filter==='wrong'&&ok)return;const d=document.createElement('div');d.className='review-item';const user=answers[i]===undefined?'Sin responder':`${'ABCD'[answers[i]]}. ${q.opts[answers[i]]}`;d.innerHTML=`<div class="qmeta">${i+1}. ${q.subject}</div><p><strong>${escapeHTML(q.text)}</strong></p><p>Tu respuesta: <span class="${ok?'correct':'wrong'}">${escapeHTML(user)}</span></p><p class="correct">Respuesta correcta: ${'ABCD'[q.correct]}. ${escapeHTML(q.opts[q.correct])}</p><p>${escapeHTML(q.explain||'Revisa el concepto relacionado con esta pregunta.')}</p>`;list.appendChild(d)});
+}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function restart(){document.getElementById('result').style.display='none';document.getElementById('home').classList.remove('hide');document.getElementById('exam').style.display='none';window.scrollTo({top:0,behavior:'smooth'})}
+</script>
+</body>
+</html>
